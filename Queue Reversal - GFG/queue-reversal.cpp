@@ -10,21 +10,23 @@ using namespace std;
 //Function to reverse the queue.
 class Solution
 {
+    private:
+    void qRev(queue<int> &q)
+    {
+       if(q.empty())
+        {
+            return;
+        }
+        int num = q.front();
+        q.pop();
+        qRev(q);
+        q.push(num); 
+    }
     public:
     queue<int> rev(queue<int> q)
     {
         // add code here.
-        stack<int> st;
-        while(!q.empty())
-        {
-            st.push(q.front());
-            q.pop();
-        }
-        while(!st.empty())
-        {
-            q.push(st.top());
-            st.pop();
-        }
+        qRev(q);
         return q;
     }
 };
