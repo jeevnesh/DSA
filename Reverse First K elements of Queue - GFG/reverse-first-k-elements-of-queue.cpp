@@ -34,7 +34,6 @@ int main() {
 queue<int> modifyQueue(queue<int> q, int k) {
     // add code here.
     stack<int> st;
-    queue<int> ans;
     for(int i = 0 ; i < k; i++)
     {
         st.push(q.front());
@@ -42,13 +41,15 @@ queue<int> modifyQueue(queue<int> q, int k) {
     }
     for(int i = 0 ; i < k; i++)
     {
-        ans.push(st.top());
+        q.push(st.top());
         st.pop();
     }
-    while(!q.empty())
+    int t = q.size()-k;
+    while(t--)
     {
-        ans.push(q.front());
+        int val = q.front();
         q.pop();
+        q.push(val);
     }
-    return ans;
+    return q;
 }
