@@ -11,7 +11,7 @@
  */
 class Solution {
 private:
-    void reverse(vector<vector<int>> &outputAns)
+    void reverseManual(vector<vector<int>> &outputAns)
     {
         int i = 0;
         int j = outputAns.size()-1;
@@ -45,7 +45,8 @@ public:
             }
             outputAns.push_back(ans);
         }
-        reverse(outputAns);
+        reverse(outputAns.begin(), outputAns.end());
+        //reverseManual(outputAns);
         return outputAns;
     }
 };
