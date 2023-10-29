@@ -15,10 +15,13 @@ public:
         //base case
         if(root == NULL)
             return 0;
+        return max(maxDepth(root->left),maxDepth(root->right))+1;
+        /*
         int left = maxDepth(root->left);
         int right = maxDepth(root->right);
-        return max(left,right)+1;
-        //int ans = max(left,right)+1;
-        //return ans;
+        //return max(left,right)+1;
+        int ans = max(left,right)+1;
+        return ans;
+        */
     }
 };
