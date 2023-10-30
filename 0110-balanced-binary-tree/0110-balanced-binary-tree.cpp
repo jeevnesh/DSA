@@ -11,30 +11,21 @@
  */
 class Solution {
 private:
-    pair<bool,int> balanceFast(TreeNode* root)
+    int dfsSearch(TreeNode* root)
     {
         if(root == NULL)
         {
-            pair<bool,int> p = make_pair(true,0);
-            return p;
+            //returning the height at last level
+            return 0;
         }
-        
-        pair<bool,int> left = balanceFast(root->left);
-        pair<bool,int> right = balanceFast(root->right);        
-        pair<bool,int> ans;
-        if(left.first && right.first && abs(left.second - right.second) <= 1) //check for balance
-        {
-            ans.first = true;
-        }
-        else
-        {
-            ans.first = false;
-        }
-        ans.second = max(left.second,right.second)+1;  //height
-        return ans;
+        int left = dfsSearch(root->left);
+        int right = dfsSearch(root->right);
+        if(left == -1 || right == -1 || abs(left-right)>1)
+            return -1;
+        return max(left,right)+1;
     }
 public:
     bool isBalanced(TreeNode* root) {
-        return balanceFast(root).first;
+        return dfsSearch(root) != -1;
     }
 };
