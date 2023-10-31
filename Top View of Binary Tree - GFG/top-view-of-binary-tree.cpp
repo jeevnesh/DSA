@@ -118,7 +118,7 @@ class Solution
             Node* frontNode = temp.first;
             int hd = temp.second;
             if(topNode.find(hd) == topNode.end())
-                topNode[hd] = frontNode->data;
+                topNode.insert({hd,frontNode->data});
             if(frontNode->left)
                 q.push(make_pair(frontNode->left,hd-1));
             if(frontNode->right)
