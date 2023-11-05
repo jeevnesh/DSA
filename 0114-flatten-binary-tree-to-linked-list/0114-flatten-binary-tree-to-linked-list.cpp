@@ -22,12 +22,8 @@ public:
                 prev->right = root->right;
                 root->right = root->left;
                 root->left = NULL;
-                root = root->right;
             }
-            else
-            {
                 root = root->right;
-            }
         }
     }
 };
