@@ -14,9 +14,16 @@ class Solution {
     {
         if(root == NULL)
             return true;
-        if(root->val >= max || root->val <= min)
+        if(root->val > min && root->val < max)
+        {
+            bool left = isBST(root->left,min,root->val);
+            bool right = isBST(root->right,root->val,max);
+            return left && right;
+        }
+        else
+        {
             return false;
-        return isBST(root->left,min,root->val) && isBST(root->right,root->val,max);
+        }
     }
 public:
     bool isValidBST(TreeNode* root) {
