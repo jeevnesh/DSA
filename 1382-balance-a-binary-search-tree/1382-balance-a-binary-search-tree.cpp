@@ -19,7 +19,7 @@ private:
         in.push_back(root->val);
         inorder(root->right,in);
     }
-    TreeNode* balBST(int s, int e, vector<int> in)
+    TreeNode* balBST(int s, int e, vector<int> &in)
     {
         if(s>e)
             return NULL;
