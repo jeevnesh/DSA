@@ -10,25 +10,29 @@ using namespace std;
 class Solution{
 public:
     int kthLargest(vector<int> &nums,int N,int K){
-        // brute force
-        
-        //step 1: calculate and store the sum of each subarray in a vector
-        vector<int> sumStore;
+        // minHeap approach
+        priority_queue<int,vector<int>,greater<int>> minHeap;
         for(int i = 0 ; i < N; i++)
         {
             int sum = 0;
             for(int j = i; j < N; j++)
             {
                 sum += nums[j]; 
-                sumStore.push_back(sum);
+                if(minHeap.size() < K)
+                    minHeap.push(sum);
+                else 
+                {
+                    if(sum > minHeap.top())
+                    {
+                        minHeap.pop();
+                        minHeap.push(sum);
+                    }
+                }
             }
         }
         
-        //step 2: sort the vector in ascendinf order
-        sort(sumStore.begin() , sumStore.end());
-        
-        //step 3: return the answer
-        return sumStore[sumStore.size()-K];
+        // return the answer
+        return minHeap.top();
     }
 };
 
